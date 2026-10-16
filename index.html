@@ -8,7 +8,7 @@
     <meta property="og:title" content="Quata Labs — Software solutions for a brighter tomorrow" />
     <meta property="og:description" content="Your idea. Our engineering. Full-stack software, mobile apps, web experiences and cloud delivery built around your needs." />
     <meta property="og:type" content="website" />
-    <title>Quata Labs — Software solutions for a brighter tomorrow</title>
+    <title>Quata Labs | Software Company</title>
     <link rel="icon" type="image/png" href="assets/quata-mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,28 @@
     <link rel="stylesheet" href="styles.css" />
     <script>document.documentElement.classList.add('has-js');</script>
 </head>
-<body>
+<body class="home-page is-loading">
+<div class="site-loader" id="site-loader" role="status" aria-label="Loading Quata Labs">
+    <div class="loader-slices" aria-hidden="true">
+        <div class="loader-slice"></div><div class="loader-slice"></div><div class="loader-slice"></div>
+        <div class="loader-slice"></div><div class="loader-slice"></div><div class="loader-slice"></div>
+    </div>
+</div>
+<script>
+    const finishPageLoader = () => {
+        const loader = document.getElementById('site-loader');
+        if (!loader) return;
+        loader.classList.add('is-done');
+        loader.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('is-loading');
+        window.setTimeout(() => loader.remove(), 450);
+    };
+    if (document.readyState === 'complete') {
+        finishPageLoader();
+    } else {
+        window.addEventListener('load', finishPageLoader, { once: true });
+    }
+</script>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
 <div class="site-noise" aria-hidden="true"></div>
@@ -119,7 +140,7 @@
                     <span>Tailored Solutions</span>
                     <span>Business Tools</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="0">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=0">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 02: Web Development -->
@@ -140,7 +161,7 @@
                     <span>Web Apps</span>
                     <span>E-commerce</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="1">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=1">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 03: Mobile App Development -->
@@ -162,7 +183,7 @@
                     <span>iOS</span>
                     <span>Cross-platform</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="2">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=2">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 04: Business Management Systems -->
@@ -184,7 +205,7 @@
                     <span>Management</span>
                     <span>Reporting</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="3">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=3">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 05: AI Integration & Business Intelligence -->
@@ -208,7 +229,7 @@
                     <span>LLM Integration</span>
                     <span>Data Insights</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="4">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=4">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 06: API Development & Integration -->
@@ -231,7 +252,7 @@
                     <span>REST APIs</span>
                     <span>Payment Gateways</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="5">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=5">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 07: IT Consulting & System Analysis -->
@@ -252,7 +273,7 @@
                     <span>Requirements</span>
                     <span>Tech Strategy</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="6">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=6">See more <span aria-hidden="true">↗</span></a>
             </article>
 
             <!-- 08: Software Maintenance & Support -->
@@ -274,28 +295,12 @@
                     <span>Optimisation</span>
                     <span>Maintenance</span>
                 </div>
-                <button class="service-more" type="button" data-service-detail="7">See more <span aria-hidden="true">↗</span></button>
+                <a class="service-more" href="service-details.html?service=7">See more <span aria-hidden="true">↗</span></a>
             </article>
 
         </div>
     </div>
 </section>
-
-<dialog class="service-detail-dialog" id="service-detail-dialog" aria-labelledby="service-detail-title">
-    <article class="service-detail-panel">
-        <button class="service-detail-close" type="button" aria-label="Close service details">×</button>
-        <div class="service-detail-cover"><img id="service-detail-image" src="" alt="" /></div>
-        <div class="service-detail-content">
-            <p class="eyebrow" id="service-detail-label"></p>
-            <h2 id="service-detail-title"></h2>
-            <div id="service-detail-body"></div>
-            <div class="service-detail-actions">
-                <button class="button button-primary" id="service-detail-cta" type="button"></button>
-                <button class="service-detail-dismiss" type="button" data-service-detail-close>Close</button>
-            </div>
-        </div>
-    </article>
-</dialog>
 
     <section class="process section-pad" aria-labelledby="process-title">
         <div class="wrap">
@@ -317,66 +322,56 @@
     </section>
 
     <section class="technology section-pad" id="technology" aria-labelledby="technology-title">
-        <div class="tech-background-grid" aria-hidden="true"></div>
         <div class="wrap">
-            <div class="section-heading reveal">
-                <div><p class="eyebrow"><span class="eyebrow-index">04</span> OUR TOOLKIT</p><h2 id="technology-title">The right tool.<br /><span class="muted-heading">For the right reason.</span></h2></div>
-                <p class="section-intro">Our stack is flexible by design. We work across modern frontend, backend, mobile and delivery technologies — and can adapt to the needs of your brief.</p>
+            <div class="section-heading tech-heading reveal">
+                <div>
+                    <p class="eyebrow"><span class="eyebrow-index">04</span> OUR TOOLKIT</p>
+                    <h2 id="technology-title">Built with the right<br /><span class="muted-heading">technology.</span></h2>
+                </div>
+                <p class="section-intro">A considered stack of modern technologies, selected around your product, requirements, and long-term goals.</p>
             </div>
-            <div class="tech-panel reveal">
-                <div class="tech-panel-sidebar">
-                    <span class="tech-panel-label">TECHNOLOGY / INDEX</span>
-                    <div class="tech-tabs" role="tablist" aria-label="Technology categories">
-                        <button class="tech-tab is-active" type="button" role="tab" aria-controls="tech-panel-main" aria-selected="true" data-tech="frontend"><span>01</span> Frontend</button>
-                        <button class="tech-tab" type="button" role="tab" aria-controls="tech-panel-main" aria-selected="false" data-tech="backend"><span>02</span> Backend</button>
-                        <button class="tech-tab" type="button" role="tab" aria-controls="tech-panel-main" aria-selected="false" data-tech="mobile"><span>03</span> Mobile</button>
-                        <button class="tech-tab" type="button" role="tab" aria-controls="tech-panel-main" aria-selected="false" data-tech="delivery"><span>04</span> Cloud & delivery</button>
-                        <button class="tech-tab" type="button" role="tab" aria-controls="tech-panel-main" aria-selected="false" data-tech="flexible"><span>05</span> Flexible by brief</button>
-                    </div>
-                    <p class="tech-side-note">We stay curious, keep learning and select technology to serve the product.</p>
-                </div>
-                <div class="tech-panel-main" id="tech-panel-main" role="tabpanel" tabindex="0">
-                    <div class="tech-panel-heading"><span class="live-dot"></span><span id="tech-category-label">FRONTEND ECOSYSTEM</span><span class="tech-bracket">{ }</span></div>
-                    <p class="tech-description" id="tech-description">Interfaces with a sharp feel, clean structure and room to grow.</p>
-                    <div class="tech-chips" id="tech-chips" aria-live="polite">
-                        <span class="tech-chip">React</span><span class="tech-chip">Next.js</span><span class="tech-chip">TypeScript</span><span class="tech-chip">JavaScript</span><span class="tech-chip">HTML</span><span class="tech-chip">CSS</span><span class="tech-chip">Tailwind CSS</span><span class="tech-chip">Bootstrap</span>
-                    </div>
-                    <div class="tech-panel-footer"><span><span class="status-dot"></span> ALWAYS PROJECT-LED</span><span class="tech-panel-code">QL.STACK / <b id="tech-code">01</b></span></div>
-                </div>
+            <div class="tech-grid">
+                <article class="tech-card">
+                    <p class="tech-card-category"><span>01</span> FRONTEND</p>
+                    <h3>Web experiences</h3>
+                    <p class="tech-card-description">Modern interfaces designed for clarity, responsiveness, and performance.</p>
+                    <ul class="tech-list" aria-label="Frontend technologies">
+                        <li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>HTML &amp; CSS</li><li>Tailwind CSS</li>
+                    </ul>
+                </article>
+
+                <article class="tech-card">
+                    <p class="tech-card-category"><span>02</span> BACKEND</p>
+                    <h3>Systems &amp; APIs</h3>
+                    <p class="tech-card-description">Reliable application logic, integrations, and maintainable backend architecture.</p>
+                    <ul class="tech-list" aria-label="Backend technologies">
+                        <li>Java</li><li>Spring Boot</li><li>Node.js</li><li>Express</li><li>Python</li><li>PHP</li>
+                    </ul>
+                </article>
+
+                <article class="tech-card">
+                    <p class="tech-card-category"><span>03</span> MOBILE</p>
+                    <h3>Mobile applications</h3>
+                    <p class="tech-card-description">User-focused mobile experiences across Android and cross-platform development.</p>
+                    <ul class="tech-list" aria-label="Mobile technologies">
+                        <li>Android</li><li>Kotlin</li><li>Java</li><li>Flutter</li><li>React Native</li>
+                    </ul>
+                </article>
+
+                <article class="tech-card">
+                    <p class="tech-card-category"><span>04</span> DELIVERY</p>
+                    <h3>Deployment &amp; operations</h3>
+                    <p class="tech-card-description">Practical delivery workflows for consistent deployment and dependable operation.</p>
+                    <ul class="tech-list" aria-label="Delivery technologies">
+                        <li>Docker</li><li>Containerization</li><li>Cloud hosting</li><li>Reverse proxies</li>
+                    </ul>
+                </article>
             </div>
 
-            <div class="tech-constellation reveal" aria-labelledby="constellation-title">
-                <div class="tech-constellation-head">
-                    <div><p class="eyebrow"><span class="eyebrow-index">THE ECOSYSTEM</span> CONNECTIONS THAT SHIP</p><h3 id="constellation-title">A connected <span class="gradient-text">toolkit.</span></h3></div>
-                    <p>Every technology has a role. Select a node to explore the part of the stack it belongs to.</p>
-                </div>
-                <div class="tech-constellation-scene" aria-label="Interactive technology constellation diagram">
-                    <svg class="tech-network-lines" viewBox="0 0 1000 440" preserveAspectRatio="none" aria-hidden="true">
-                        <defs><linearGradient id="tech-line-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9861ff" stop-opacity=".42"/><stop offset=".52" stop-color="#2478ff" stop-opacity=".76"/><stop offset="1" stop-color="#17d9ed" stop-opacity=".48"/></linearGradient></defs>
-                        <g class="tech-network-edge-group" fill="none" stroke="url(#tech-line-gradient)" stroke-width="1.35">
-                            <path class="tech-network-edge" d="M170 70 L390 43 L610 60 L825 90"/>
-                            <path class="tech-network-edge" d="M170 70 L140 205 L335 175 L500 220 L665 175 L850 210"/>
-                            <path class="tech-network-edge" d="M140 205 L160 350 L370 385 L500 220 L635 370 L830 350"/>
-                            <path class="tech-network-edge" d="M335 175 L370 385 M665 175 L635 370 M850 210 L830 350 M610 60 L665 175 M390 43 L335 175"/>
-                        </g>
-                    </svg>
-                    <div class="tech-network-core" aria-hidden="true"><span class="tech-core-orbit tech-core-orbit-a"></span><span class="tech-core-orbit tech-core-orbit-b"></span><img src="assets/quata-mark.png" alt="" /><small>QUATA LABS</small></div>
-                    <button class="tech-node is-active" type="button" style="--x:17%;--y:16%" data-constellation-tech="React" data-tech-category="frontend" data-description="Component-driven interfaces and reusable UI systems." aria-pressed="true"><i></i>React</button>
-                    <button class="tech-node" type="button" style="--x:39%;--y:10%" data-constellation-tech="Next.js" data-tech-category="frontend" data-description="Production-ready web experiences with routing, rendering and performance in mind." aria-pressed="false"><i></i>Next.js</button>
-                    <button class="tech-node" type="button" style="--x:61%;--y:14%" data-constellation-tech="TypeScript" data-tech-category="frontend" data-description="Typed JavaScript that keeps larger codebases easier to maintain." aria-pressed="false"><i></i>TypeScript</button>
-                    <button class="tech-node" type="button" style="--x:83%;--y:21%" data-constellation-tech="JavaScript" data-tech-category="frontend" data-description="The flexible foundation for interactive experiences across the web." aria-pressed="false"><i></i>JavaScript</button>
-                    <button class="tech-node" type="button" style="--x:14%;--y:47%" data-constellation-tech="Node.js" data-tech-category="backend" data-description="JavaScript runtimes for APIs, services and event-driven backends." aria-pressed="false"><i></i>Node.js</button>
-                    <button class="tech-node" type="button" style="--x:33.5%;--y:40%" data-constellation-tech="Express" data-tech-category="backend" data-description="Lean HTTP APIs and server-side application routes." aria-pressed="false"><i></i>Express</button>
-                    <button class="tech-node" type="button" style="--x:66.5%;--y:40%" data-constellation-tech="Java" data-tech-category="backend" data-description="A strong foundation for structured, maintainable backend systems." aria-pressed="false"><i></i>Java</button>
-                    <button class="tech-node" type="button" style="--x:85%;--y:48%" data-constellation-tech="Spring Boot" data-tech-category="backend" data-description="A practical framework for building Java services and APIs." aria-pressed="false"><i></i>Spring Boot</button>
-                    <button class="tech-node" type="button" style="--x:16%;--y:80%" data-constellation-tech="Python" data-tech-category="backend" data-description="Versatile backends, integrations, automation and AI-enabled workflows." aria-pressed="false"><i></i>Python</button>
-                    <button class="tech-node" type="button" style="--x:37%;--y:87%" data-constellation-tech="Flutter" data-tech-category="mobile" data-description="Cross-platform mobile interfaces from a shared codebase." aria-pressed="false"><i></i>Flutter</button>
-                    <button class="tech-node" type="button" style="--x:63.5%;--y:84%" data-constellation-tech="Kotlin" data-tech-category="mobile" data-description="Modern Android development and native mobile features." aria-pressed="false"><i></i>Kotlin</button>
-                    <button class="tech-node" type="button" style="--x:83%;--y:80%" data-constellation-tech="Docker + Cloud" data-tech-category="delivery" data-description="Repeatable deployments, containers, hosting and operations." aria-pressed="false"><i></i>Docker + Cloud</button>
-                </div>
-                <div class="tech-constellation-status" aria-live="polite"><span class="status-dot"></span><span class="tech-selected-label">SELECTED NODE</span><strong id="tech-selected-name">React</strong><span id="tech-selected-description">Component-driven interfaces and reusable UI systems.</span></div>
-            </div>
-            <p class="tech-footnote reveal">Also working with Java, Spring Boot, PHP, Node.js, Express, Python, Kotlin, React Native, Flutter, Docker and more — based on what your project calls for.</p>
+            <aside class="tech-note">
+                <span class="tech-note-mark" aria-hidden="true">+</span>
+                <p><strong>Technology with purpose.</strong><span>We choose the stack around the problem — not the trend — with maintainability, performance, and future growth in mind.</span></p>
+            </aside>
         </div>
     </section>
 
@@ -389,11 +384,9 @@
                 </div>
                 <p class="section-intro">A look at a real-world system we built to make everyday operations simpler, clearer and easier to manage. More projects will be added here as we share our work.</p>
             </div>
-
-
-
+            <div class="projects-grid">
             <!-- New Project: Smart Food ERP -->
-            <article class="project-showcase reveal" aria-labelledby="erp-project-title" style="margin-bottom: 60px;">
+            <article class="project-showcase reveal" aria-labelledby="erp-project-title">
                 <div class="project-video-frame">
                     <video class="project-demo-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="assets/smart-food-erp-poster.jpg" aria-label="Looping walkthrough of the Smart Food & Drink ERP">
                         <source src="assets/smart-food-erp.mp4" type="video/mp4" />
@@ -447,6 +440,7 @@
                     <div class="project-tech-block"><span class="project-tech-label">BUILT WITH</span><div class="project-tech-tags"><span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Tailwind CSS</span></div></div>
                 </div>
             </article>
+            </div>
 
             <div style="text-align: center; margin-top: 40px;">
                 <a href="projects.html" class="button button-primary magnetic">See all projects <span class="button-arrow" aria-hidden="true">↗</span></a>
@@ -695,7 +689,6 @@
 <script src="contact-config.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 <script src="script.js" defer></script>
-<script src="service-details.js" defer></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

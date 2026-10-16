@@ -7,6 +7,8 @@
             title: 'Software built around your business.',
             image: 'assets/services/custom-software.jpg',
             imageAlt: 'Abstract visualization representing software built for business needs',
+            visual: 'assets/services/Services-visual/Custom Software Development.jpg',
+            visualAlt: 'Custom software development service visualization',
             intro: 'Every business has unique challenges. We develop custom software solutions designed around your specific requirements, workflows, and long-term goals—helping you work more efficiently and turn complex processes into simple, manageable systems.',
             sections: [
                 { title: 'Software that works the way you do', paragraphs: ["Off-the-shelf software doesn't always fit the way your business operates. Custom software gives you the flexibility to build exactly what you need, without unnecessary features or limitations.", 'At Quata Labs, we work with you to understand your business processes, identify opportunities for improvement, and develop reliable software that supports your day-to-day operations and future growth.'] },
@@ -23,6 +25,8 @@
             title: 'Digital experiences designed to perform.',
             image: 'assets/services/web-development.jpg',
             imageAlt: 'Web interface design shown across connected digital screens',
+            visual: 'assets/services/Services-visual/Web Development.jpg',
+            visualAlt: 'Web development service visualization',
             intro: "Your website is more than an online presence. It's an opportunity to communicate your value, connect with your audience, and create meaningful business opportunities.",
             introExtra: 'Quata Labs designs and develops modern websites and web applications that combine thoughtful design, reliable functionality, responsive layouts, and performance-focused development.',
             sections: [
@@ -40,6 +44,8 @@
             title: 'Powerful ideas, built for mobile.',
             image: 'assets/services/mobile-app.png',
             imageAlt: 'Mobile application interface displayed on a smartphone',
+            visual: 'assets/services/Services-visual/Mobile App Development.jpg',
+            visualAlt: 'Mobile app development service visualization',
             intro: 'Your customers expect convenient, intuitive digital experiences wherever they are. We transform ideas into mobile applications that make services more accessible, simplify everyday activities, and connect people with your business.',
             introExtra: 'Quata Labs develops mobile solutions with a focus on usability, functionality, reliability, and the needs of your target audience.',
             sections: [
@@ -57,6 +63,8 @@
             title: 'Bring your business operations together.',
             image: 'assets/services/business-management.jpg',
             imageAlt: 'Business analytics and management information on a digital dashboard',
+            visual: 'assets/services/Services-visual/Business Management Systems.jpg',
+            visualAlt: 'Business management systems service visualization',
             intro: 'Managing customers, inventory, bookings, employees, and payments across disconnected tools can make everyday operations unnecessarily complicated.',
             introExtra: 'Quata Labs develops integrated business management systems that bring essential processes together, improve visibility, and help businesses manage their operations with greater confidence.',
             sections: [
@@ -74,6 +82,8 @@
             title: 'Turn business data into useful insights.',
             image: 'assets/services/ai-integration.png',
             imageAlt: 'Artificial intelligence and data analytics visualisation',
+            visual: 'assets/services/Services-visual/AI Integration & Business Intelligence.jpg',
+            visualAlt: 'AI integration and business intelligence service visualization',
             intro: 'Your business generates valuable information every day. With the right tools, that information can help you understand performance, identify patterns, and make better decisions.',
             introExtra: 'Quata Labs helps businesses integrate artificial intelligence into their applications and transform operational data into meaningful insights through business intelligence and analytics solutions.',
             sections: [
@@ -91,6 +101,8 @@
             title: 'Connect your systems. Extend your capabilities.',
             image: 'assets/services/api-developments.webp',
             imageAlt: 'Connected software systems and application programming interfaces',
+            visual: 'assets/services/Services-visual/API Development & Integration.jpg',
+            visualAlt: 'API development and integration service visualization',
             intro: 'Modern applications rarely work in isolation. They exchange information with databases, payment providers, third-party platforms, and other business systems.',
             introExtra: 'Quata Labs develops APIs and integration solutions that enable applications to communicate reliably, exchange information, and work together as part of a connected digital ecosystem.',
             sections: [
@@ -108,6 +120,8 @@
             title: 'Make better technology decisions.',
             image: 'assets/services/it-consulting.webp',
             imageAlt: 'Technology planning and system analysis workspace',
+            visual: 'assets/services/Services-visual/IT Consulting & System Analysis.jpg',
+            visualAlt: 'IT consulting and system analysis service visualization',
             intro: 'Choosing the right technology begins with understanding the problem. Without clear requirements and a well-defined plan, software projects can become unnecessarily complex, costly, or difficult to maintain.',
             introExtra: 'Quata Labs helps businesses analyse their requirements, evaluate technical options, and plan digital solutions that align with their operational needs and long-term objectives.',
             sections: [
@@ -125,6 +139,8 @@
             title: 'Keep your software reliable as you grow.',
             image: 'assets/services/Maintenance-Software.webp',
             imageAlt: 'Software maintenance and system support dashboard',
+            visual: 'assets/services/Services-visual/Software Maintenance & Support.jpg',
+            visualAlt: 'Software maintenance and support service visualization',
             intro: 'Software needs ongoing attention to remain useful, reliable, and compatible with changing business requirements. Regular maintenance helps address issues, improve performance, and keep applications aligned with the needs of their users.',
             introExtra: 'Quata Labs provides software maintenance and improvement services to help businesses maintain their digital systems and extend the value of their existing software investments.',
             sections: [
@@ -139,15 +155,15 @@
         }
     ];
 
-    const dialog = document.querySelector('#service-detail-dialog');
+    const detailSection = document.querySelector('#service-about');
     const image = document.querySelector('#service-detail-image');
+    const visual = document.querySelector('#service-detail-visual');
+    const introContent = document.querySelector('#service-detail-intro');
     const label = document.querySelector('#service-detail-label');
     const title = document.querySelector('#service-detail-title');
     const body = document.querySelector('#service-detail-body');
     const cta = document.querySelector('#service-detail-cta');
-    const requestDialog = document.querySelector('#request-modal');
-
-    if (!dialog || !image || !label || !title || !body || !cta) return;
+    if (!detailSection || !image || !visual || !introContent || !label || !title || !body || !cta) return;
 
     const appendText = (tag, text, parent) => {
         const element = document.createElement(tag);
@@ -159,13 +175,15 @@
     const renderService = (service) => {
         image.src = service.image;
         image.alt = service.imageAlt;
+        visual.src = service.visual;
+        visual.alt = service.visualAlt;
         label.textContent = service.label;
         title.textContent = service.title;
+        introContent.replaceChildren();
+        const intro = appendText('p', service.intro, introContent);
+        intro.className = 'service-detail-intro-lede';
+        if (service.introExtra) appendText('p', service.introExtra, introContent);
         body.replaceChildren();
-
-        const intro = appendText('p', service.intro, body);
-        intro.className = 'service-detail-intro';
-        if (service.introExtra) appendText('p', service.introExtra, body);
 
         service.sections.forEach(section => {
             const sectionElement = document.createElement('section');
@@ -194,33 +212,15 @@
         });
 
         cta.textContent = service.cta;
-        cta.dataset.projectType = service.projectType;
-        cta.dataset.projectDetails = service.projectDetails;
+        document.title = `${service.title} | Quata Labs`;
     };
 
-    document.querySelectorAll('[data-service-detail]').forEach(button => {
-        button.addEventListener('click', () => {
-            const service = services[Number(button.dataset.serviceDetail)];
-            if (!service) return;
-            renderService(service);
-            dialog.showModal();
-        });
-    });
-
-    const closeDialog = () => dialog.close();
-    dialog.querySelectorAll('[data-service-detail-close], .service-detail-close').forEach(button => {
-        button.addEventListener('click', closeDialog);
-    });
-    dialog.addEventListener('click', event => {
-        if (event.target === dialog) closeDialog();
-    });
-
-    cta.addEventListener('click', () => {
-        const projectType = document.querySelector('[name="project_type"]');
-        const projectDetails = document.querySelector('[name="project_details"]');
-        if (projectType) projectType.value = cta.dataset.projectType;
-        if (projectDetails) projectDetails.value = cta.dataset.projectDetails;
-        dialog.close();
-        requestDialog?.showModal();
-    });
+    const serviceParam = new URLSearchParams(window.location.search).get('service');
+    const serviceIndex = serviceParam === null ? NaN : Number(serviceParam);
+    const selectedService = services[serviceIndex];
+    if (!selectedService) {
+        window.location.replace('index.html#services');
+        return;
+    }
+    renderService(selectedService);
 })();

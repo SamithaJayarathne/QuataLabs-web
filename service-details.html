@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050816" />
+    <meta name="description" content="Explore Quata Labs software and digital services." />
+    <title>Service Details | Quata Labs</title>
+    <link rel="icon" type="image/png" href="assets/quata-mark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="service-detail-page">
+<div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+<div class="site-noise" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+    <div class="nav-shell wrap">
+        <a class="brand" href="index.html" aria-label="Quata Labs home">
+            <span class="brand-mark-shell" aria-hidden="true">
+                <span class="brand-mark-galaxy">
+                    <span class="brand-mark-orbit brand-mark-orbit-a"><i></i></span>
+                    <span class="brand-mark-orbit brand-mark-orbit-b"><i></i></span>
+                    <span class="brand-mark-orbit brand-mark-orbit-c"><i></i></span>
+                </span>
+                <img src="assets/quata-mark.png" alt="" class="brand-mark" />
+            </span>
+            <span class="brand-wordmark">Quata<span>Labs</span></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+            <span></span><span></span>
+        </button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+            <a href="index.html#services">Services</a>
+            <a href="index.html#approach">Our approach</a>
+            <a href="index.html#technology">Technology</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#team">The team</a>
+            <a class="nav-cta" href="index.html#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+    <section class="service-about section-pad" id="service-about" aria-labelledby="service-detail-title">
+        <div class="service-detail-cover">
+            <img id="service-detail-image" src="" alt="" />
+            <div class="service-cover-copy">
+                <p class="eyebrow" id="service-detail-label"></p>
+                <h1 id="service-detail-title"></h1>
+            </div>
+        </div>
+        <div class="wrap service-detail-wrap">
+            <a class="service-detail-back" href="index.html#services"><span aria-hidden="true">←</span> All services</a>
+            <div class="service-detail-lead">
+                <figure class="service-detail-visual">
+                    <img id="service-detail-visual" src="" alt="" />
+                </figure>
+                <div class="service-detail-intro" id="service-detail-intro"></div>
+            </div>
+            <div class="service-detail-content">
+                <div id="service-detail-body"></div>
+                <div class="service-detail-actions">
+                    <a class="button button-primary" id="service-detail-cta" href="index.html#contact"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="script.js" defer></script>
+<script src="service-details.js" defer></script>
+</body>
+</html>

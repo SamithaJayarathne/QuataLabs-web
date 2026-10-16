@@ -50,89 +50,6 @@
         });
     }
 
-    // Technology selector. Content stays in the document and is updated without navigation.
-    const technology = {
-        frontend: {
-            label: 'FRONTEND ECOSYSTEM', code: '01', description: 'Interfaces with a sharp feel, clean structure and room to grow.',
-            chips: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Bootstrap']
-        },
-        backend: {
-            label: 'BACKEND ECOSYSTEM', code: '02', description: 'Secure, maintainable systems that power the product behind the scenes.',
-            chips: ['Java', 'Spring Boot', 'Node.js', 'Express', 'Python', 'PHP', 'REST APIs', 'Databases']
-        },
-        mobile: {
-            label: 'MOBILE ECOSYSTEM', code: '03', description: 'Mobile experiences that are built for real devices, daily use and future updates.',
-            chips: ['React Native', 'Flutter', 'Kotlin', 'Android', 'Cross-platform', 'API integration']
-        },
-        delivery: {
-            label: 'CLOUD & DELIVERY', code: '04', description: 'A dependable path from local development to a live, supported product.',
-            chips: ['Docker', 'CI/CD', 'Cloud hosting', 'Deployment', 'Monitoring', 'Performance', 'Git workflows']
-        },
-        flexible: {
-            label: 'BUILT AROUND YOUR BRIEF', code: '05', description: 'Have an existing stack or a particular requirement? We can assess it and shape a fitting approach.',
-            chips: ['New technologies', 'Integrations', 'Legacy systems', 'AI features', 'Automation', 'Custom workflows']
-        }
-    };
-    const techTabs = $$('.tech-tab');
-    const techLabel = $('#tech-category-label');
-    const techDescription = $('#tech-description');
-    const techChips = $('#tech-chips');
-    const techCode = $('#tech-code');
-    const setTechnology = (key, focus = false) => {
-        const item = technology[key];
-        if (!item || !techLabel || !techDescription || !techChips) return;
-        techTabs.forEach(tab => {
-            const active = tab.dataset.tech === key;
-            tab.classList.toggle('is-active', active);
-            tab.setAttribute('aria-selected', String(active));
-            tab.setAttribute('tabindex', active ? '0' : '-1');
-        });
-        techLabel.textContent = item.label;
-        techDescription.textContent = item.description;
-        if (techCode) techCode.textContent = item.code;
-        techChips.replaceChildren();
-        item.chips.forEach((chip, index) => {
-            const el = document.createElement('span');
-            el.className = 'tech-chip';
-            el.textContent = chip;
-            el.style.animationDelay = `${Math.min(index * 35, 245)}ms`;
-            techChips.appendChild(el);
-        });
-        if (focus) techTabs.find(tab => tab.dataset.tech === key)?.focus();
-    };
-    techTabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => setTechnology(tab.dataset.tech));
-        tab.addEventListener('keydown', event => {
-            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-            event.preventDefault();
-            let next = index;
-            if (event.key === 'ArrowLeft') next = (index - 1 + techTabs.length) % techTabs.length;
-            if (event.key === 'ArrowRight') next = (index + 1) % techTabs.length;
-            if (event.key === 'Home') next = 0;
-            if (event.key === 'End') next = techTabs.length - 1;
-            setTechnology(techTabs[next].dataset.tech, true);
-        });
-    });
-    // Correct tab stops for accessible roving focus after the initial markup.
-    techTabs.forEach(tab => tab.setAttribute('tabindex', tab.classList.contains('is-active') ? '0' : '-1'));
-
-    // Interactive technology constellation: select a node to connect it to the stack index.
-    const constellationNodes = $$('.tech-node');
-    const constellationName = $('#tech-selected-name');
-    const constellationDescription = $('#tech-selected-description');
-    constellationNodes.forEach(node => {
-        node.addEventListener('click', () => {
-            constellationNodes.forEach(other => {
-                const active = other === node;
-                other.classList.toggle('is-active', active);
-                other.setAttribute('aria-pressed', String(active));
-            });
-            if (constellationName) constellationName.textContent = node.dataset.constellationTech || node.textContent.trim();
-            if (constellationDescription) constellationDescription.textContent = node.dataset.description || 'Selected technology in the Quata Labs toolkit.';
-            if (node.dataset.techCategory) setTechnology(node.dataset.techCategory);
-        });
-    });
-
     // Draw the process timeline progressively while the section scrolls through view.
     const processSection = $('.process');
     const processRail = $('.process-rail');
@@ -315,19 +232,21 @@
     // Progressive entrance animation: without GSAP, all content remains visible.
     if (window.gsap && window.ScrollTrigger && !reducedMotion) {
         gsap.registerPlugin(ScrollTrigger);
-        $$('.reveal').forEach((element) => {
+        $$('.reveal:not(.service-card)').forEach((element) => {
             gsap.from(element, {
                 opacity: 0, y: 24, duration: .72, ease: 'power2.out',
                 scrollTrigger: { trigger: element, start: 'top 88%', once: true },
                 clearProps: 'opacity,transform'
             });
         });
-        $$('.service-card').forEach((card, index) => {
-            gsap.from(card, {
-                opacity: 0, y: 28, duration: .6, delay: (index % 3) * .07, ease: 'power2.out',
-                scrollTrigger: { trigger: card, start: 'top 91%', once: true }, clearProps: 'opacity,transform'
+        const serviceCards = $$('.service-grid .service-card');
+        if (serviceCards.length) {
+            gsap.from(serviceCards, {
+                opacity: 0, y: 18, duration: .72, stagger: .09, ease: 'power3.out',
+                scrollTrigger: { trigger: $('.service-grid'), start: 'top 86%', once: true },
+                clearProps: 'opacity,transform'
             });
-        });
+        }
         ScrollTrigger.refresh();
     } else {
         $$('.reveal').forEach(element => element.classList.add('is-visible'));
